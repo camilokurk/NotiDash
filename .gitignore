@@ -1,0 +1,18 @@
+# KiCad
+*-backups/
+*.lck
+fp-info-cache
+*.bak
+*.000
+_autosave-*
+*-cache.lib
+
+# Arduino
+*.hex
+*.elf
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
