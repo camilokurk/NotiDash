@@ -94,8 +94,16 @@ void loop()
                     strcpy(actual.texto, cuarto);
                     actual.priority = prioridad;
 
-                    if(prioridad == 2) {
-                    urgente = true;
+                    if(prioridad == 0) {
+                        LED[0] = CRGB::Green;
+                        FastLED.show();
+                    }else if(prioridad == 1){
+                        LED[0] = CRGB::Yellow;
+                        FastLED.show();
+                    }else{
+                        LED[0] = CRGB::Red;
+                        FastLED.show();
+                        urgente = true;
                     };                    
                 };
             };
