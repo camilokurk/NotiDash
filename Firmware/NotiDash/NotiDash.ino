@@ -9,6 +9,16 @@ int posicion = 0;
 
 CRGB LED[1];
 
+struct Notificacion {
+    char source [5];
+    int priority;
+    char texto[65];
+};
+
+Notificacion actual;
+
+bool urgente = false;
+
 void setup()
 {
     Serial.begin(9600);
@@ -50,6 +60,7 @@ void loop()
 
     if(actualPush != ultimoPush && actualPush == LOW){
         Serial.println("Push");
+        urgente = false;
 
         ultimoPush = actualPush;
     }
@@ -71,9 +82,25 @@ void loop()
             }else{
                 char* tercero = strtok(NULL, "|");
                 char* cuarto = strtok(NULL, "|");
+                Serial.println(segundo);
+                Serial.println(tercero);
+                Serial.println(cuarto);
+                    
+                int prioridad = atoi(tercero);
+                Serial.println(prioridad);
+
+                if(!urgente || prioridad == 2) {
+                    strcpy(actual.source, segundo);
+                    strcpy(actual.texto, cuarto);
+                    actual.priority = prioridad;
+
+                    if(prioridad == 2) {
+                    urgente = true;
+                    };                    
+                };
             };
+
         };  
-        
     };
 
     
